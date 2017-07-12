@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+         <div id="login">
+             <h1>Returning user? Login here:</h1>
+            <form action="/login_attempt" method="post">
+                <label for="name">Email: </label>
+                <input type="text" id="email" name="email">
+                <label for="name">Password: </label>
+                <input type="text" id="password" name="password">
+                <input type="submit" value="Login" name="login">
+            </form>
+        </div>
+        <hr>  
+        <div id="register">
+            <h1>First time user? Register here:</h1>
+            <form action="/registration_attempt" method="post">
+                <label for="name">Email: </label>
+                <input type="text" id="email" name="email">
+                  <br>
+                <label for="name">First name: </label>
+                <input type="text" id="first_name" name="first_name">
+                <br>
+                <label for="name">Last name: </label>
+                <input type="text" id="last_name" name="last_name">
+                <br>
+                <label for="name">Password: </label>
+                <input type="password" id="password" name="password">
+                <br>
+                <label for="name">Confirm password: </label>
+                <input type="password" id="confirm_password" name="confirm_password">
+                <br> 
+                 <input type="submit" value="Register" name="registration">  
+            </form>
+        </div>
+        <hr>
+        <div id="errors">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>
