@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>The email address you entered, {{ new_email }}, is a valid email address and has been inserted into our database.</p>
+    <h1>Email addresses entered:</h1>
+    <table>
+        {% for entry in email_list %}
+            <tr>
+                <td>{{ entry["email"] }}</td>
+                <td>{{ entry["created_at"] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
