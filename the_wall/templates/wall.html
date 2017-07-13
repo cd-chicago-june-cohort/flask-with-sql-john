@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name='viewport' content="width=device-width initial-scale=1.0">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+   <link rel="stylesheet" href="{{ url_for ('static', filename='styles.css')}}">
+   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+   <script src="SCRIPT SOURCE"></script>
+   <title>The Wall</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="top_bar">Post A Message</h1>
+        <form action="/logout" method="post" class="top_bar">
+            <input type="submit" value="Logout" name="logout" id="logout">
+        </form>
+        <form class="pure-form" action="/message" method="post">
+            <textarea name="new_message" id="new_message" rows="10"></textarea>
+            <input type="submit" value="Post">
+        </form>
+        <hr>
+
+
+
+        <div class="wall_post">
+            {% for result in results_list %}
+            <div class="messages">
+            <p><strong>{{ result['first_name'] + " " + result['last_name'] + " "}}</strong>{{result['created_at']}}</p>
+            <p>{{ result['message'] }}</p>
+            <hr>
+            
+ 
+                {% for each_comment in comment_list %}
+                    
+                    {% if result["message_id"] == each_comment["dog"] %}
+                        <div class="comments">
+
+
+
+                            <p><strong>{{ each_comment['first_name'] + " " + each_comment['last_name'] + " "}}</strong>{{each_comment['created_at']}}</p>
+                            <p>{{ each_comment['comment'] }}</p>
+                            <hr>
+
+
+
+
+                        </div>
+                    {% endif %}
+
+                {% endfor %}  
+
+
+            <form class="pure-form" action="/comment/{{result['message_id']}}" method="post">
+                <textarea name="new_comment" id="new_comment" rows="10"></textarea>
+                <input type="submit" value="Post a comment">
+            </form>
+
+            </div>
+            {% endfor %}
+        </div>
+        <div class="comments">
+
+       </div>
+    </div>
+</body>
+</html>
